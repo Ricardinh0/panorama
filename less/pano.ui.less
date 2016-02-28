@@ -1,0 +1,221 @@
+
+@prefix:-o-,-ms-,-moz-,-webkit-;
+
+.animation(@name; @length; @ease; @delay; @direction){
+
+	@i: length(@prefix);
+
+	.loop(@i) when (@i > 0){
+
+		@p: extract(@prefix, @i);
+
+		@{p}animation: ~'@{name} @{length} @{ease} @{delay} @{direction}';
+
+		.loop(@i - 1);
+	}
+
+	.loop(@i);
+
+	animation: ~'@{name} @{length} @{ease} @{delay} @{direction}';
+
+}
+
+.spin(@p:~'';){
+
+	from {@{p}transform: rotate(0deg);}
+	to {@{p}transform: rotate(360deg);}
+
+}
+
+.killLoad(@p:~'';){
+
+	0%		{opacity: 1;}
+	99% 	{opacity: 0;}
+	100% 	{opacity: 0; visibility: hidden;}
+
+}
+
+.keyFrameSpin(@name){
+
+	/****	WEBKIT	****/
+	@-webkit-keyframes ~'@{name}' {.spin(-webkit-)}
+	/****	MOZ	****/
+	@-moz-keyframes ~'@{name}' {.spin(-moz-)}
+	/****	O	****/
+	@-o-keyframes ~'@{name}' {.spin(-o-)}
+	/****	BASE	****/
+	@keyframes ~'@{name}' {.spin()}
+
+}
+
+.keyFrameKillLoad(@name){
+
+	/****	WEBKIT	****/
+	@-webkit-keyframes ~'@{name}' {.killLoad(-webkit-)}
+	/****	MOZ	****/
+	@-moz-keyframes ~'@{name}' {.killLoad(-moz-)}
+	/****	O	****/
+	@-o-keyframes ~'@{name}' {.killLoad(-o-)}
+	/****	BASE	****/
+	@keyframes ~'@{name}' {.killLoad()}
+
+}
+
+
+.transition(@prop:all; @seconds:1s; @ease:linear){
+	@i: length(@prefix);
+	.loop(@i) when (@i > 0){
+		@p: extract(@prefix, @i);
+		@{p}transition: ~'@{prop} @{seconds} @{ease}';
+		.loop(@i - 1);
+	}
+	.loop(@i);
+	transition: ~'@{prop} @{seconds} @{ease}';
+}
+/*
+*
+*	CSS
+*
+*/
+HTML, BODY{
+	margin: 0;
+	padding: 0;
+}
+BODY{
+	font-size: 15px;
+}
+BODY.inertia{
+	cursor: pointer;
+	cursor: hand;
+}
+#PANO_load{
+	width:100%;
+	height: 100%;
+	position: fixed;	
+	top: 0;
+	display: table;
+	background: black;
+	z-index: 999;
+}
+.PANO_killLoad{
+	.animation(killLoad, 1s, linear, 0s, forwards);
+}
+.PANO_loader{
+	width:100%;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+}
+.PANO_loader IMG{
+	width: 36px;
+	.animation(spin, 1s, linear, 0s, infinite);
+}
+
+.keyFrameKillLoad(killLoad);
+.keyFrameSpin(spin);
+
+/*
+*
+*	Panoramic track
+*
+*/
+#PANO_trackWrap{
+	position: absolute;
+	top:20px;
+	left:20px;
+	-webkit-perspective:	70;
+	-moz-perspective:		70;
+	-o-perspective:			70;
+	perspective:			70;
+}
+#PANO_track{
+	width:30px;
+	height:30px;
+	border:4px solid rgba(255, 255, 255, .3);
+	border-radius:30px;
+	-webkit-transform:	rotateY(0deg) rotateX(70deg) translateX(0px);
+	-moz-transform:		rotateY(0deg) rotateX(70deg) translateX(0px);
+	-o-transform:		rotateY(0deg) rotateX(70deg) translateX(0px);
+	transform:			rotateY(0deg) rotateX(70deg) translateX(0px);
+}
+.PANO_track_mark{
+    width:38px;
+	height:38px;
+	background:url('../img/ui/PANO_segment.png') top center;
+	background-size: 38px auto;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-19px;
+	margin-top:-19px;
+}
+/*
+*
+*	Panoramic instructions
+*
+*/
+#PANO_instructions{
+	width:100%;
+	height: 100%;
+	position: fixed;	
+	top: 0;
+	display: table;
+	background: rgba(0,0,0,0.5)
+}
+
+#PANO_instruct_gyro{}
+#PANO_instruct_inertia{}
+
+#PANO_instructions DIV{
+	width:100%;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+	font: 1.500em/1em "Trade Gothic W01 Bold 2", 'MS PGothic', Arial, sans-serif;
+	color:#FFF;
+	text-transform: uppercase;
+}
+#PANO_instructions IMG{
+	display: block;
+	background: white;
+	margin: 0 auto 15px;
+}
+
+.PANO_instructOn{
+	.animation(instructionOn, .3s, linear, 0s, forwards);
+}
+.PANO_instructOff{
+	.animation(instructionOff, .3s, linear, 0s, forwards);
+}
+
+@-webkit-keyframes instructionOn{
+	0%		{opacity: 0;}
+	100%	{opacity: 1;}
+}
+@-webkit-keyframes instructionOff{
+	0%		{opacity: 1;}
+	100%	{opacity: 0;}
+}
+
+/*
+*
+*	Motion toggle button
+*
+*/
+#motionToggleButton{
+	width:100%;
+	height:40px;
+	position: absolute;
+	bottom:-1px;
+	background:rgba(0,0,0,0.8);
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+#motionToggleButton P{
+	font:12px/18px Helvetica,Arial,Sans-Serif;
+	margin: 11px 0 0 0;
+	cursor: inherit;
+}

@@ -1,0 +1,27 @@
+
+@prefix:-o-,-ms-,-moz-,-webkit-;
+
+.transition(@prop:all; @seconds:1s; @ease:linear){
+	@i: length(@prefix);
+	.loop(@i) when (@i > 0){
+		@p: extract(@prefix, @i);
+		@{p}transition: ~'@{prop} @{seconds} @{ease}';
+		.loop(@i - 1);
+	}
+	.loop(@i);
+	transition: ~'@{prop} @{seconds} @{ease}';
+}
+/*
+*
+*	CSS
+*
+*/ 
+.face_media{
+	
+	position: absolute;
+	width: inherit;
+	height: inherit;
+
+	.transition(opacity, 2s);
+
+}

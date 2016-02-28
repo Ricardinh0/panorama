@@ -1,0 +1,269 @@
+
+@panoWidth: 1024px;
+@panoHeight: @panoWidth;
+
+@initPerspective: 800px;
+@initFaceTranslateZ: -509px;
+
+@prefix:-o-,-ms-,-moz-,-webkit-;
+
+.backfaceVisibility(@value){
+	@i: length(@prefix);
+	.loop(@i) when (@i > 0){
+		@p: extract(@prefix, @i);
+		@{p}backface-visibility: ~'@{value}';
+		.loop(@i - 1);
+	}
+	.loop(@i);
+	backface-visibility: ~'@{value}';
+}
+
+.transformOrigins(@oX:0%; @oY:0%){
+	@i: length(@prefix);
+	.loop(@i) when (@i > 0){
+		@p: extract(@prefix, @i);
+		@{p}transform-origin: ~'@{oX} @{oY}';
+		.loop(@i - 1);
+	}
+	.loop(@i);
+	transform-origin: ~'@{oX} @{oY}';
+}
+
+.cubeFace(@rX:0deg; @rY:0deg){
+	@i: length(@prefix);
+	.loop(@i) when (@i > 0){
+		@p: extract(@prefix, @i);
+		@{p}transform: ~'rotateX(@{rX}) rotateY(@{rY}) translateZ(@{initFaceTranslateZ})';
+		.loop(@i - 1);
+	}
+	.loop(@i);
+	transform: ~'rotateX(@{rX}) rotateY(@{rY}) translateZ(@{initFaceTranslateZ})';
+}
+/*
+*
+*	CSS
+*
+*/
+#PANO{
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: #27e299;
+
+	-webkit-perspective:	@initPerspective;
+	-moz-perspective:		@initPerspective;
+	-ms-perspective:		@initPerspective;
+	-o-perspective:			@initPerspective;
+	perspective:			@initPerspective;
+
+}
+
+.scene, .shape, .face{
+
+	position: absolute;
+
+	-webkit-transform-style: 	preserve-3d;
+	-moz-transform-style: 		preserve-3d;
+	-ms-transform-style: 		preserve-3d;
+	-o-transform-style: 		preserve-3d;
+	transform-style: 			preserve-3d;
+
+}
+.scene{
+
+	width: @panoWidth;
+	height: @panoHeight;
+	top: 50%;
+	left: 50%;
+	margin: -@panoWidth/2 0 0 -@panoHeight/2;
+
+}
+.shape{
+
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+
+	.transformOrigins(50% 50%);
+
+}
+.face{
+	
+	/*box-shadow: inset 0 0 0 10px rgba(225, 225, 225, 1);*/
+
+	background-size: 100% 100% !important;
+	background-position: center;
+	
+	background-color: black;
+
+	width: 100%;
+	height: 100%;
+
+	.transformOrigins(50% 50%);
+	.backfaceVisibility(hidden);
+
+}
+
+#PANO_cube{
+	width:inherit;
+	height:inherit;
+	margin:inherit;
+}
+
+#PANO_north{
+	.cubeFace()
+}
+#PANO_east{
+	.cubeFace(0deg, -90deg)
+}
+#PANO_south{
+	.cubeFace(0deg, 180deg)
+}
+#PANO_west{
+	.cubeFace(0deg, 90deg)
+}
+#PANO_up{
+	.cubeFace(-90deg)
+}
+#PANO_down{
+	.cubeFace(90deg)
+}
+
+
+
+
+
+
+
+@panoWidth_b: 100px;
+@panoHeight_b: @panoWidth_b;
+
+@initPerspective_b: 800px;
+@initFaceTranslateZ_b: -50px;
+
+
+#PANO_b{
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+
+	-webkit-perspective:	@initPerspective_b;
+	-moz-perspective:		@initPerspective_b;
+	-ms-perspective:		@initPerspective_b;
+	-o-perspective:			@initPerspective_b;
+	perspective:			@initPerspective_b;
+
+}
+
+.scene_b, .shape_b, .face_b{
+
+	position: absolute;
+
+	-webkit-transform-style: 	preserve-3d;
+	-moz-transform-style: 		preserve-3d;
+	-ms-transform-style: 		preserve-3d;
+	-o-transform-style: 		preserve-3d;
+	transform-style: 			preserve-3d;
+
+}
+.scene_b{
+
+	width: @panoWidth_b;
+	height: @panoHeight_b;
+	top: 50%;
+	left: 50%;
+	margin: -@panoWidth_b/2 0 0 -@panoHeight_b/2;
+
+
+	-webkit-transform: rotateX(37deg) rotateY(20deg);
+
+}
+.shape_b{
+
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+
+	.transformOrigins(50% 50%);
+
+}
+.face_b{
+	
+	/*box-shadow: inset 0 0 0 10px rgba(225, 225, 225, 1);*/
+
+	background-size: 100% 100% !important;
+	background-position: center;
+	
+	background: #fa85bc;
+
+	background: #fa85bc; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fa85bc 0%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fa85bc), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fa85bc 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fa85bc 0%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fa85bc 0%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #fa85bc 0%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa85bc', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+
+	width: 100%;
+	height: 100%;
+
+	.transformOrigins(50% 50%);
+	/*
+	.backfaceVisibility(hidden);
+	*/
+}
+
+#PANO_cube_b{
+	width:inherit;
+	height:inherit;
+	margin:inherit;
+}
+
+#PANO_north_b{
+	-webkit-transform: rotateX(0deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(0deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(0deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(0deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(0deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+}
+#PANO_east_b{
+	-webkit-transform: rotateX(0deg) rotateY(-90deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(0deg) rotateY(-90deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(0deg) rotateY(-90deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(0deg) rotateY(-90deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(0deg) rotateY(-90deg) translateZ(@initFaceTranslateZ_b);
+}
+#PANO_south_b{
+	-webkit-transform: rotateX(0deg) rotateY(180deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(0deg) rotateY(180deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(0deg) rotateY(180deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(0deg) rotateY(180deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(0deg) rotateY(180deg) translateZ(@initFaceTranslateZ_b);
+}
+#PANO_west_b{
+	-webkit-transform: rotateX(0deg) rotateY(90deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(0deg) rotateY(90deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(0deg) rotateY(90deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(0deg) rotateY(90deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(0deg) rotateY(90deg) translateZ(@initFaceTranslateZ_b);
+}
+#PANO_up_b{
+	-webkit-transform: rotateX(-90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(-90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(-90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(-90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(-90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+}
+#PANO_down_b{
+	-webkit-transform: rotateX(90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-moz-transform: rotateX(90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-ms-transform: rotateX(90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	-o-transform: rotateX(90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+	transform: rotateX(90deg) rotateY(0deg) translateZ(@initFaceTranslateZ_b);
+}
