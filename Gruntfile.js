@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        report: 'gzip',
+        //report: 'gzip',
         preserveComments: 'false',
         mangle: {
           except: []

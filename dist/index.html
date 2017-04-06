@@ -1,19 +1,14 @@
 <!DOCTYPE html itemscope itemtype="http://schema.org/Article">
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 
-	<!-- Meta -->
-	<title>HTML5 360° - 3 Steps Forward is the portfolio of Sydney based Creative Technologist Richard Coulson</title>
-	<meta name="description" content="Page description. No longer than 155 characters." />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-
-	<!-- CSS -->
-
-
+  <!-- Meta -->
+  <title>HTML5 360° - By Sydney based Front-end Developer Richard Coulson</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+  
 
 
     <link rel="stylesheet" type="text/css" href="css/pano-style.min.css">
@@ -22,128 +17,122 @@
 
 
 
-	
+  
 </head>
 <body>
-	<!--
-	*
-	*	Cube
-	*
-	-->
-	<div id='PANO'>
-		<div class='scene' id='PANO_scene'>
-			<div class='shape' id='PANO_cube'>
-				<!--
-				*
-				*	North face
-				*
-				-->
-				<div class='face' id='PANO_north'>
-				</div>
-				<!--
-				*
-				*	East face
-				*
-				-->
-				<div class='face' id='PANO_east'>
-				</div>
-				<!--
-				*
-				*	South face
-				*
-				-->
-				<div class='face' id='PANO_south'>
-				</div>
-				<!--
-				*
-				*	West face
-				*
-				-->
-				<div class='face' id='PANO_west'>
-				</div>
-				<!--
-				*
-				*	Up (sky) face
-				*
-				-->
-				<div class='face' id='PANO_up'>
-				</div>
-				<!--
-				*
-				*	Down (floor) face
-				*
-				-->
-				<div class='face' id='PANO_down'>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--
-	*
-	*	Cube
-	*
-	-->
-	<div id='PANO_b'>
-		<div class='scene_b' id='PANO_scene_b'>
-			<div class='shape_b' id='PANO_cube_b'>
-				<div class='face_b' id='PANO_north_b'></div>
-				<div class='face_b' id='PANO_east_b'></div>
-				<div class='face_b' id='PANO_south_b'></div>
-				<div class='face_b' id='PANO_west_b'></div>
-				<div class='face_b' id='PANO_up_b'></div>
-				<div class='face_b' id='PANO_down_b'></div>
-			</div>
-		</div>
-	</div>
-	<!--
-	*
-	*	Tracker unit
-	*
-	-->
-	<div id='PANO_trackWrap' style='display:none;'>
-		<div id='PANO_track'>
-			<div class='PANO_track_mark'></div>
-		</div>
-	</div>
-	<!--
-	*
-	*	Load screen
-	*
-	-->
-	<div id='PANO_load'>
-		<div class='PANO_loader'>
-			<img src="img/ui/PANO_load.png">
-		</div>
-	</div>
-	<!--
-	*
-	*	Instructions screen
-	*
-	-->
-	<div id='PANO_instructions'>
+  <!--
+  *
+  * Cube
+  *
+  -->
+  <div id='PANO'>
+    <div class='scene' id='PANO_scene'>
+      <div class='shape' id='PANO_cube'>
+        <!--
+        *
+        * North face
+        *
+        -->
+        <div class='face' id='PANO_north'>
+        </div>
+        <!--
+        *
+        * East face
+        *
+        -->
+        <div class='face' id='PANO_east'>
+        </div>
+        <!--
+        *
+        * South face
+        *
+        -->
+        <div class='face' id='PANO_south'>
+        </div>
+        <!--
+        *
+        * West face
+        *
+        -->
+        <div class='face' id='PANO_west'>
+        </div>
+        <!--
+        *
+        * Up (sky) face
+        *
+        -->
+        <div class='face' id='PANO_up'>
+        </div>
+        <!--
+        *
+        * Down (floor) face
+        *
+        -->
+        <div class='face' id='PANO_down'>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+  *
+  * Cube
+  *
+  -->
+  <div id='PANO_b'>
+    <div class='scene_b' id='PANO_scene_b'>
+      <div class='shape_b' id='PANO_cube_b'>
+        <div class='face_b' id='PANO_north_b'></div>
+        <div class='face_b' id='PANO_east_b'></div>
+        <div class='face_b' id='PANO_south_b'></div>
+        <div class='face_b' id='PANO_west_b'></div>
+        <div class='face_b' id='PANO_up_b'></div>
+        <div class='face_b' id='PANO_down_b'></div>
+      </div>
+    </div>
+  </div>
+  <!--
+  *
+  * Tracker unit
+  *
+  -->
+  <div id='PANO_trackWrap' style='display:none;'>
+    <div id='PANO_track'>
+      <div class='PANO_track_mark'></div>
+    </div>
+  </div>
+  <!--
+  *
+  * Load screen
+  *
+  -->
+  <div id='PANO_load'>
+    <div class='PANO_loader'>
+      <img src="img/ui/PANO_load.png">
+    </div>
+  </div>
+  <!--
+  *
+  * Instructions screen
+  *
+  -->
+  <div id='PANO_instructions'>
 
-		<div id='PANO_instruct_gyro'>
-			<img width='40' height='40' />
-			<span>Gyro Instructions</span>
-		</div>
+    <div id='PANO_instruct_gyro'>
+      <img width='40' height='40' />
+      <span>Gyro Instructions</span>
+    </div>
 
-		<div id='PANO_instruct_inertia'>
-			<img width='40' height='40' />
-			<span>Inertia Instructions</span>
-		</div>
+    <div id='PANO_instruct_inertia'>
+      <img width='40' height='40' />
+      <span>Inertia Instructions</span>
+    </div>
 
-	</div>
-
-	<div style='position:absolute; top:0; width:100%; color:white; text-align:center; padding-top:10px; font:normal 10px/10px Arial, Helvetica, Sans-serif;'><a href='http://www.3stepsforward.co.uk' target='_blank' style='color:white;'>www.3stepsforward.co.uk</a></div>
-
-	<!--div style='background:#27e299; height:2500px; width:100%;'></div-->
+  </div>
 
 
 
 
-	<!-- GA -->
-	<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
-	<!-- REQUIRE -->
+  <!-- REQUIRE -->
     <script type="text/javascript" data-main="js/pano.min.js" src="require.js"></script>
 
 </body>
